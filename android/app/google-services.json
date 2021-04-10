@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "509628057242",
+    "project_id": "sheee-b0c1f",
+    "storage_bucket": "sheee-b0c1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509628057242:android:defcfe47768b25f5ab8123",
+        "android_client_info": {
+          "package_name": "ammarmohamedsobhi.she"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509628057242-nc6a1luhd1ts1q7nq8hmjbs8f4man5gc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6b9jGPrAI7jUaUwZlqq6saE3tuCtpO-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509628057242-nc6a1luhd1ts1q7nq8hmjbs8f4man5gc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
