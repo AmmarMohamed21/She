@@ -25,7 +25,7 @@ class InformationRow extends StatelessWidget {
           value,
           style: TextStyle(
             color: kPrimaryText,
-            fontSize: 18.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.w400,
           ),
         ),

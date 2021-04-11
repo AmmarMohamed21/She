@@ -18,30 +18,36 @@ class StoryPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CircleAvatar(
-                radius: 80.0,
-                backgroundImage: AssetImage(imagePath),
+              Expanded(
+                flex: 3,
+                child: CircleAvatar(
+                  radius: 80.0,
+                  backgroundImage: AssetImage(imagePath),
+                ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    name,
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w700,
+              Expanded(
+                flex: 5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: kLightPrimaryColor,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w600,
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: kLightPrimaryColor,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
