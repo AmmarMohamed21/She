@@ -17,9 +17,9 @@ https://github.com/AmmarMohamed21/She/releases/tag/v1.0-beta
 
 ### Step 1
 Download or clone the repo using this link: 
-'''
+```
 https://github.com/AmmarMohamed21/She
-'''
+```
 
 ### Step 2
 Go to project root and execute the following command in console to get the required dependencies:
