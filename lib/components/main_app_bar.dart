@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:she/constants.dart';
 import '../screens/profile_screen.dart';
-import '../screens/welcome_screen.dart';
+import '../screens/login_screen.dart';
 import '../screens/home_screen.dart';
 
 AppBar getAppBar({String title, BuildContext context}) {
@@ -32,7 +32,7 @@ AppBar getAppBar({String title, BuildContext context}) {
           ),
           PopupMenuItem(
             child: Text('Sign Out'),
-            value: WelcomeScreen.id,
+            value: LoginScreen.id,
           ),
         ],
         onSelected: (route) {

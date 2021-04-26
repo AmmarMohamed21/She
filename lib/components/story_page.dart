@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:she/constants.dart';
 
 class StoryPage extends StatelessWidget {
-  final String imagePath;
+  final String imageURL;
   final String name;
   final String title;
   final String story;
 
-  StoryPage({this.name, this.title, this.imagePath, this.story});
+  StoryPage({this.name, this.title, this.imageURL, this.story});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +22,8 @@ class StoryPage extends StatelessWidget {
                 flex: 3,
                 child: CircleAvatar(
                   radius: 80.0,
-                  backgroundImage: AssetImage(imagePath),
+                  foregroundImage: NetworkImage(imageURL),
+                  backgroundImage: AssetImage('assets/pp.png'),
                 ),
               ),
               Expanded(

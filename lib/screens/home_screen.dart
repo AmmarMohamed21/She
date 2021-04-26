@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:she/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:she/screens/welcome_screen.dart';
+import 'package:she/screens/login_screen.dart';
 import 'package:she/servicesscreens/jobs_screen.dart';
 import '../components/resusable_card.dart';
 import 'profile_screen.dart';
@@ -11,18 +11,19 @@ import '../servicesscreens/jobs_screen.dart';
 import '../servicesscreens/courses_screen.dart';
 import '../servicesscreens/inspiring_stories.dart';
 import '../servicesscreens/internships_screen.dart';
-import '../servicesscreens/report_screen.dart';
+import '../servicesscreens/motherhood_screen.dart';
 import '../servicesscreens/talent_exchange_screen.dart';
-import '../servicesscreens/travel_screen.dart';
-import '../servicesscreens/ventout_screen.dart';
+import '../servicesscreens/travel_programs_screen.dart';
+import '../servicesscreens/women_safety_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 final firestore = FirebaseFirestore.instance;
 User loggedInUser;
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   static const String id = 'home_screen';
 
   final _auth = FirebaseAuth.instance;
@@ -34,11 +35,6 @@ class HomeScreen extends StatefulWidget {
     }
   }
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,19 +48,19 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    title: 'Jobs',
-                    icon: Icons.work,
+                    title: 'Women Safety',
+                    icon: FontAwesomeIcons.handsHelping,
                     tapDetector: () {
-                      Navigator.pushNamed(context, JobsScreen.id);
+                      Navigator.pushNamed(context, WomenSafetyScreen.id);
                     },
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    title: 'Courses',
-                    icon: FontAwesomeIcons.book,
+                    title: 'Motherhood',
+                    icon: Icons.pregnant_woman,
                     tapDetector: () {
-                      Navigator.pushNamed(context, CoursesScreen.id);
+                      Navigator.pushNamed(context, MotherhoodScreen.id);
                     },
                   ),
                 ),
@@ -74,17 +70,17 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    title: 'Travel',
-                    icon: FontAwesomeIcons.planeDeparture,
+                    title: 'Jobs',
+                    icon: Icons.work,
                     tapDetector: () {
-                      Navigator.pushNamed(context, TravelScreen.id);
+                      Navigator.pushNamed(context, JobsScreen.id);
                     },
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     title: 'Internships',
-                    icon: FontAwesomeIcons.graduationCap,
+                    icon: FlutterIcons.graduation_cap_ent,
                     tapDetector: () {
                       Navigator.pushNamed(context, InternshipsScreen.id);
                     },
@@ -96,19 +92,19 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    title: 'Vent Out',
-                    icon: FontAwesomeIcons.handsHelping,
+                    title: 'Courses',
+                    icon: FontAwesomeIcons.book,
                     tapDetector: () {
-                      Navigator.pushNamed(context, VentOutScreen.id);
+                      Navigator.pushNamed(context, CoursesScreen.id);
                     },
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    title: 'Report',
-                    icon: FontAwesomeIcons.ban,
+                    title: 'Travel Programs',
+                    icon: FlutterIcons.md_airplane_ion,
                     tapDetector: () {
-                      Navigator.pushNamed(context, ReportScreen.id);
+                      Navigator.pushNamed(context, TravelProgramsScreen.id);
                     },
                   ),
                 ),

@@ -8,19 +8,19 @@ import '../components/rounded_button.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../services/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../components/loading_circle.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  static const String id = 'welcome_screen';
+class LoginScreen extends StatefulWidget {
+  static const String id = 'login_screen';
 
   @override
-  _WelcomeScreenState createState() => _WelcomeScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen>
+class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation animation;
-  Animation animatedColor;
   bool showSpinner = false;
   void initialization() async {
     await Firebase.initializeApp();
@@ -38,8 +38,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
     animation = ColorTween(begin: kLightPrimaryColor, end: Colors.white)
         .animate(controller);
-    animatedColor = ColorTween(begin: kPrimaryColor, end: kPrimaryColor)
-        .animate(controller);
     controller.forward();
     controller.addListener(() {
       setState(() {});
@@ -52,9 +50,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       backgroundColor: animation.value,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
-        progressIndicator: CircularProgressIndicator(
-          valueColor: animatedColor,
-        ),
+        progressIndicator: LoadingCircle(),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 24.0,
