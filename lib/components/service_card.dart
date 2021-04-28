@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:she/constants.dart';
 
-class ReusableCard extends StatelessWidget {
+class ServiceCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Function tapDetector;
-  ReusableCard({this.title, this.icon, this.tapDetector});
+  ServiceCard({this.title, this.icon, this.tapDetector});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -38,17 +38,7 @@ class ReusableCard extends StatelessWidget {
           ),
         ),
         margin: EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          color: Color(0xFFEEEEEE),
-          borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.pink,
-              offset: Offset(0.0, 1.0),
-              blurRadius: 3.0,
-            ),
-          ],
-        ),
+        decoration: kCardDecoration,
       ),
     );
   }

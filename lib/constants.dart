@@ -53,3 +53,15 @@ InputDecoration kInputStyle = InputDecoration(
     borderSide: BorderSide(color: kPrimaryColor),
   ),
 );
+
+BoxDecoration kCardDecoration = BoxDecoration(
+  color: Color.fromRGBO(245, 245, 245, 1),
+  borderRadius: BorderRadius.circular(10.0),
+  boxShadow: [
+    BoxShadow(
+      color: Colors.pink,
+      offset: Offset(0.0, 1.0),
+      blurRadius: 3.0,
+    ),
+  ],
+);

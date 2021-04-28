@@ -4,7 +4,7 @@ import 'package:she/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:she/screens/login_screen.dart';
 import 'package:she/servicesscreens/jobs_screen.dart';
-import '../components/resusable_card.dart';
+import '../components/service_card.dart';
 import 'profile_screen.dart';
 import '../components/main_app_bar.dart';
 import '../servicesscreens/jobs_screen.dart';
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Women Safety',
                     icon: FontAwesomeIcons.handsHelping,
                     tapDetector: () {
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Motherhood',
                     icon: Icons.pregnant_woman,
                     tapDetector: () {
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Jobs',
                     icon: Icons.work,
                     tapDetector: () {
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Internships',
                     icon: FlutterIcons.graduation_cap_ent,
                     tapDetector: () {
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Courses',
                     icon: FontAwesomeIcons.book,
                     tapDetector: () {
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Travel Programs',
                     icon: FlutterIcons.md_airplane_ion,
                     tapDetector: () {
@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Talent Exchange',
                     icon: FontAwesomeIcons.solidHandshake,
                     tapDetector: () {
@@ -122,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
+                  child: ServiceCard(
                     title: 'Inspiring Stories',
                     icon: FontAwesomeIcons.fistRaised,
                     tapDetector: () {
