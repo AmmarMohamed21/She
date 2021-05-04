@@ -48,10 +48,23 @@ Widget kInformationDivider = Divider(
   thickness: 2.0,
 );
 
-InputDecoration kInputStyle = InputDecoration(
-  focusedBorder: UnderlineInputBorder(
-    borderSide: BorderSide(color: kPrimaryColor),
+UnderlineInputBorder kUnderlineInputBorder = UnderlineInputBorder(
+  borderSide: BorderSide(color: kPrimaryColor),
+);
+InputDecoration kInputBorderedStyle = InputDecoration(
+  border: OutlineInputBorder(
+    borderSide: BorderSide(color: kAccentColor, width: 2.0),
   ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: kPrimaryColor, width: 2.0),
+  ),
+);
+
+OutlineInputBorder kInputBorder = OutlineInputBorder(
+  borderSide: BorderSide(color: kAccentColor, width: 1.5),
+);
+OutlineInputBorder kFocusedBorder = OutlineInputBorder(
+  borderSide: BorderSide(color: kPrimaryColor, width: 2.0),
 );
 
 BoxDecoration kCardDecoration = BoxDecoration(

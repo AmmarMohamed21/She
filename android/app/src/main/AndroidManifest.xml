@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ammarmohamedsobhi.she">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="She - هي"
         android:icon="@mipmap/launcher_icon">

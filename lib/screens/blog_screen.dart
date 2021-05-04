@@ -34,7 +34,10 @@ class BlogScreen extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-            kInformationDivider,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: kInformationDivider,
+            ),
             SizedBox(
               height: 20.0,
             ),

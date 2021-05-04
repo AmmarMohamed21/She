@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:she/components/interests_list.dart';
 import 'package:she/constants.dart';
 import 'package:she/screens/edit_profile.dart';
 import '../components/main_app_bar.dart';
@@ -11,6 +12,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../components/information_row.dart';
 import '../components/information_list.dart';
+import '../services/user_data.dart';
+import 'package:provider/provider.dart';
 
 final firestore = FirebaseFirestore.instance;
 User loggedInUser;
@@ -56,13 +59,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
       firestore.collection('users').doc(userID).set(data);
       document = await firestore.collection('users').doc(userID).get();
     }
+    Provider.of<UserData>(context, listen: false).updateData(
+        document.data()['location'],
+        document.data()['birthdate'],
+        document.data()['Education'],
+        document.data()['interests']);
 
-    setState(() {
-      userBirthDate = document.data()['birthdate'];
-      userInterests = document.data()['interests'];
-      userEducation = document.data()['Education'];
-      userLocation = document.data()['location'];
-    });
     showSpinner = false;
   }
 
@@ -129,17 +131,29 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     children: [
                       InformationRow(title: 'Email', value: loggedInUser.email),
                       kInformationDivider,
-                      InformationRow(title: 'Birthdate', value: userBirthDate),
+                      InformationRow(
+                        title: 'Birthdate',
+                        value: Provider.of<UserData>(context, listen: false)
+                            .getData()["birthdate"],
+                      ),
                       kInformationDivider,
-                      InformationRow(title: 'Location', value: userLocation),
+                      InformationRow(
+                          title: 'Location',
+                          value: Provider.of<UserData>(context)
+                              .getData()["location"]),
                       kInformationDivider,
                       InformationList(title: 'Education', values: [
-                        userEducation['major'],
-                        userEducation['university']
+                        Provider.of<UserData>(context, listen: false)
+                            .getData()["Education"]["major"],
+                        Provider.of<UserData>(context, listen: false)
+                            .getData()["Education"]["university"],
                       ]),
                       kInformationDivider,
-                      InformationList(
-                          title: 'Interests', values: userInterests),
+                      InterestsList(
+                        title: 'Interests',
+                        values: Provider.of<UserData>(context, listen: false)
+                            .getData()["interests"],
+                      ),
                     ],
                   ),
                 ),
@@ -157,31 +171,25 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
             isScrollControlled: true,
             builder: (context) => SingleChildScrollView(
               child: EditProfileScreen(
-                major: userEducation['major'],
-                university: userEducation['university'],
-                birthdate: userBirthDate,
-                location: userLocation,
-                getValues: (String editedLocation,
-                    String editedInterest,
-                    String editedBirthdate,
-                    String editedMajor,
-                    String editedUni) async {
+                major: Provider.of<UserData>(context, listen: false)
+                    .data["Education"]["major"],
+                university: Provider.of<UserData>(context, listen: false)
+                    .data["Education"]["university"],
+                birthdate: Provider.of<UserData>(context, listen: false)
+                    .data["birthdate"],
+                location: Provider.of<UserData>(context, listen: false)
+                    .data["location"],
+                getValues: () async {
+                  //to be refactored
                   showSpinner = true;
                   String userID = loggedInUser.uid;
-                  if (userInterests == null) {
-                    userInterests = [];
-                  }
-                  if (editedInterest != null) userInterests.add(editedInterest);
-                  var data = {
-                    "location": editedLocation,
-                    "birthdate": editedBirthdate,
-                    "Education": {
-                      "major": editedMajor,
-                      "university": editedUni,
-                    },
-                    "interests": userInterests
-                  };
-                  await firestore.collection('users').doc(userID).update(data);
+                  Provider.of<UserData>(context, listen: false).addInterest();
+                  try {
+                    await firestore.collection('users').doc(userID).update(
+                        Provider.of<UserData>(context, listen: false)
+                            .getData());
+                  } catch (err) {}
+
                   await getUserData();
                   showSpinner = false;
                 },

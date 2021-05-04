@@ -21,7 +21,7 @@ class ServiceCard extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: kPrimaryText,
-                  fontSize: 18.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),

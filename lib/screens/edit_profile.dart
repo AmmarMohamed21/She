@@ -1,15 +1,17 @@
 import 'dart:ui';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:she/components/submit_button.dart';
 import 'package:she/constants.dart';
+import '../services/user_data.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  String major;
-  String university;
-  String birthdate;
-  String location;
-  String interest;
-  Function getValues;
+  final String major;
+  final String university;
+  final String birthdate;
+  final String location;
+  final Function getValues;
+
   EditProfileScreen(
       {this.major,
       this.university,
@@ -42,11 +44,15 @@ class EditProfileScreen extends StatelessWidget {
             ),
             TextField(
               cursorColor: kLightPrimaryColor,
-              decoration: kInputStyle,
-              controller: TextEditingController(text: major),
+              controller: TextEditingController(
+                  text: Provider.of<UserData>(context, listen: false)
+                      .data["Education"]["major"]),
+              decoration: InputDecoration(
+                focusedBorder: kUnderlineInputBorder,
+              ),
               onChanged: (value) {
-                major = value;
-                print(major);
+                Provider.of<UserData>(context, listen: false).data["Education"]
+                    ["major"] = value;
               },
             ),
             SizedBox(
@@ -60,11 +66,16 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: TextEditingController(
+                  text: Provider.of<UserData>(context, listen: false)
+                      .data["Education"]["university"]),
               cursorColor: kLightPrimaryColor,
-              decoration: kInputStyle,
-              controller: TextEditingController(text: university),
+              decoration: InputDecoration(
+                focusedBorder: kUnderlineInputBorder,
+              ),
               onChanged: (value) {
-                university = value;
+                Provider.of<UserData>(context, listen: false).data["Education"]
+                    ["university"] = value;
               },
             ),
             SizedBox(
@@ -79,10 +90,41 @@ class EditProfileScreen extends StatelessWidget {
             ),
             TextField(
               cursorColor: kLightPrimaryColor,
-              decoration: kInputStyle,
-              controller: TextEditingController(text: birthdate),
+              controller: TextEditingController(
+                  text: Provider.of<UserData>(context, listen: false)
+                      .data["birthdate"]),
+              decoration: InputDecoration(
+                focusedBorder: kUnderlineInputBorder,
+              ),
+              onTap: () async {
+                DateTime date = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime(2000),
+                  firstDate: DateTime(1920),
+                  lastDate: DateTime.now(),
+                  builder: (context, Widget child) {
+                    return Theme(
+                      data: Theme.of(context).copyWith(
+                        colorScheme: ColorScheme.light().copyWith(
+                          primary: kPrimaryText,
+                          onPrimary: kPrimaryColor,
+                        ),
+                      ),
+                      child: child,
+                    );
+                  },
+                );
+                Provider.of<UserData>(context, listen: false)
+                        .data["birthdate"] =
+                    date.day.toString() +
+                        '/' +
+                        date.month.toString() +
+                        '/' +
+                        date.year.toString();
+              },
               onChanged: (value) {
-                birthdate = value;
+                Provider.of<UserData>(context, listen: false)
+                    .data["birthdate"] = value;
               },
             ),
             SizedBox(
@@ -96,11 +138,16 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: TextEditingController(
+                  text: Provider.of<UserData>(context, listen: false)
+                      .data["location"]),
               cursorColor: kLightPrimaryColor,
-              decoration: kInputStyle,
-              controller: TextEditingController(text: location),
+              decoration: InputDecoration(
+                focusedBorder: kUnderlineInputBorder,
+              ),
               onChanged: (value) {
-                location = value;
+                Provider.of<UserData>(context, listen: false).data["location"] =
+                    value;
               },
             ),
             SizedBox(
@@ -115,26 +162,20 @@ class EditProfileScreen extends StatelessWidget {
             ),
             TextField(
               cursorColor: kLightPrimaryColor,
-              decoration: kInputStyle,
+              decoration: InputDecoration(
+                focusedBorder: kUnderlineInputBorder,
+              ),
               onChanged: (value) {
-                interest = value;
+                Provider.of<UserData>(context, listen: false).newInterest =
+                    value;
               },
             ),
-            TextButton(
+            SubmitButton(
               onPressed: () {
                 Navigator.pop(context);
-                getValues(location, interest, birthdate, major, university);
+                getValues();
               },
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(kPrimaryColor)),
-              child: Text(
-                'Edit',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                ),
-              ),
+              text: 'Edit',
             ),
           ],
         ),

@@ -36,6 +36,8 @@ dependencies:
   flutter_icons: ^1.1.0
   expandable: ^5.0.1
   video_player: ^2.1.1
+  url_launcher: ^6.0.3
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
