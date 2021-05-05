@@ -6,7 +6,7 @@ This project is still in the phase of development, some features are yet to be i
 you can also see some features like Jobs, Internships and Inspiring Stories with some dummy data.
 Also a new Women Safety section has been added where you can read awareness blogs, and report harassment incidents to the authorities.
 
-## Try the demo version on Android
+## Try the pre-release version on Android
 Try the pre-release version by downloading the APK app installer for android through this link:
 
 ```
