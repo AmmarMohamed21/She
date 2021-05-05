@@ -3,12 +3,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:she/constants.dart';
 import 'package:she/screens/home_screen.dart';
-import 'package:she/screens/profile_screen.dart';
 import '../components/rounded_button.dart';
-import 'package:firebase_core/firebase_core.dart';
 import '../services/authentication.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../components/loading_circle.dart';
+import 'package:provider/provider.dart';
+import '../services/database.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -22,13 +21,9 @@ class _LoginScreenState extends State<LoginScreen>
   AnimationController controller;
   Animation animation;
   bool showSpinner = false;
-  void initialization() async {
-    await Firebase.initializeApp();
-  }
 
   @override
   void initState() {
-    initialization();
     super.initState();
     controller = AnimationController(
       vsync: this,
@@ -97,6 +92,8 @@ class _LoginScreenState extends State<LoginScreen>
                     final user =
                         await Authentication.signInWithGoogle(context: context);
                     if (user != null) {
+                      Provider.of<Database>(context, listen: false)
+                          .setLoggedInUser();
                       Navigator.pushNamed(context, HomeScreen.id);
                     }
                     setState(() {

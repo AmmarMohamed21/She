@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:she/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:she/screens/login_screen.dart';
 import 'package:she/servicesscreens/jobs_screen.dart';
 import '../components/service_card.dart';
-import 'profile_screen.dart';
 import '../components/main_app_bar.dart';
 import '../servicesscreens/jobs_screen.dart';
 import '../servicesscreens/courses_screen.dart';
@@ -15,25 +12,10 @@ import '../servicesscreens/motherhood_screen.dart';
 import '../servicesscreens/talent_exchange_screen.dart';
 import '../servicesscreens/travel_programs_screen.dart';
 import '../servicesscreens/women_safety_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-
-final firestore = FirebaseFirestore.instance;
-User loggedInUser;
 
 class HomeScreen extends StatelessWidget {
   static const String id = 'home_screen';
-
-  final _auth = FirebaseAuth.instance;
-
-  void getCurrentUser() {
-    User user = _auth.currentUser;
-    if (user != null) {
-      loggedInUser = user;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

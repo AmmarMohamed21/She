@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../components/main_app_bar.dart';
-import 'package:she/constants.dart';
 import '../components/story_page.dart';
 import '../components/loading_circle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-final firestore = FirebaseFirestore.instance;
+import 'package:provider/provider.dart';
+import '../services/database.dart';
 
 class InspiringStoriesScreen extends StatelessWidget {
   static const String id = 'inspiring_stories_screen';
@@ -24,7 +23,8 @@ class StoriesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: firestore.collection('inspiringStories').snapshots(),
+      stream: Provider.of<Database>(context, listen: false)
+          .getStream('inspiringStories'),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(

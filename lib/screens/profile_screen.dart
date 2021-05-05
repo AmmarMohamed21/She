@@ -5,18 +5,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:she/components/interests_list.dart';
 import 'package:she/constants.dart';
-import 'package:she/screens/edit_profile.dart';
+import 'package:she/screens/edit_profile_screen.dart';
 import '../components/main_app_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../components/information_row.dart';
 import '../components/information_list.dart';
-import '../services/user_data.dart';
+import '../services/database.dart';
 import 'package:provider/provider.dart';
 
-final firestore = FirebaseFirestore.instance;
-User loggedInUser;
+// final firestore = FirebaseFirestore.instance;
+// User loggedInUser;
 
 class Profile extends StatefulWidget {
   static const String id = 'profile_screen';
@@ -34,37 +34,34 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   String userLocation = '';
   List<dynamic> userInterests = [];
   Map userEducation = {'major': '', 'university': ''};
-  void getCurrentUser() {
-    User user = _auth.currentUser;
-    if (user != null) {
-      loggedInUser = user;
-    }
-  }
 
-  Future<void> getUserData() async {
-    String userID = loggedInUser.uid;
-    var data;
-
-    var document = await firestore.collection('users').doc(userID).get();
-    if (document.data() == null) {
-      data = {
-        "location": '',
-        "birthdate": '',
-        "Education": {
-          "major": '',
-          "university": '',
-        },
-        "interests": [],
-      };
-      firestore.collection('users').doc(userID).set(data);
-      document = await firestore.collection('users').doc(userID).get();
-    }
-    Provider.of<UserData>(context, listen: false).updateData(
-        document.data()['location'],
-        document.data()['birthdate'],
-        document.data()['Education'],
-        document.data()['interests']);
-
+  // Future<void> getUserData() async {
+  //   String userID = loggedInUser.uid;
+  //   var data;
+  //   var document = await firestore.collection('users').doc(userID).get();
+  //   if (document.data() == null) {
+  //     data = {
+  //       "location": '',
+  //       "birthdate": '',
+  //       "Education": {
+  //         "major": '',
+  //         "university": '',
+  //       },
+  //       "interests": [],
+  //     };
+  //     firestore.collection('users').doc(userID).set(data);
+  //     document = await firestore.collection('users').doc(userID).get();
+  //   }
+  //   Provider.of<Database>(context, listen: false).updateUserData(
+  //       document.data()['location'],
+  //       document.data()['birthdate'],
+  //       document.data()['Education'],
+  //       document.data()['interests']);
+  //
+  //   showSpinner = false;
+  // }
+  Future<void> updateData() async {
+    await Provider.of<Database>(context, listen: false).getUserFirebaseData();
     showSpinner = false;
   }
 
@@ -83,8 +80,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     controller.addListener(() {
       setState(() {});
     });
-    getCurrentUser();
-    getUserData();
+    updateData();
   }
 
   @override
@@ -109,14 +105,19 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
               children: [
                 CircleAvatar(
                   radius: 80.0,
-                  foregroundImage: NetworkImage(loggedInUser.photoURL),
+                  foregroundImage: NetworkImage(
+                      Provider.of<Database>(context, listen: false)
+                          .loggedInUser
+                          .photoURL),
                   backgroundImage: AssetImage('assets/pp.png'),
                 ),
                 SizedBox(
                   height: 15.0,
                 ),
                 Text(
-                  loggedInUser.displayName,
+                  Provider.of<Database>(context, listen: false)
+                      .loggedInUser
+                      .displayName,
                   style: TextStyle(
                     color: kPrimaryColor,
                     fontSize: 25.0,
@@ -129,30 +130,34 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                 Expanded(
                   child: ListView(
                     children: [
-                      InformationRow(title: 'Email', value: loggedInUser.email),
+                      InformationRow(
+                          title: 'Email',
+                          value: Provider.of<Database>(context, listen: false)
+                              .loggedInUser
+                              .email),
                       kInformationDivider,
                       InformationRow(
                         title: 'Birthdate',
-                        value: Provider.of<UserData>(context, listen: false)
-                            .getData()["birthdate"],
+                        value: Provider.of<Database>(context, listen: false)
+                            .getUserData()["birthdate"],
                       ),
                       kInformationDivider,
                       InformationRow(
                           title: 'Location',
-                          value: Provider.of<UserData>(context)
-                              .getData()["location"]),
+                          value: Provider.of<Database>(context)
+                              .getUserData()["location"]),
                       kInformationDivider,
                       InformationList(title: 'Education', values: [
-                        Provider.of<UserData>(context, listen: false)
-                            .getData()["Education"]["major"],
-                        Provider.of<UserData>(context, listen: false)
-                            .getData()["Education"]["university"],
+                        Provider.of<Database>(context, listen: false)
+                            .getUserData()["Education"]["major"],
+                        Provider.of<Database>(context, listen: false)
+                            .getUserData()["Education"]["university"],
                       ]),
                       kInformationDivider,
                       InterestsList(
                         title: 'Interests',
-                        values: Provider.of<UserData>(context, listen: false)
-                            .getData()["interests"],
+                        values: Provider.of<Database>(context, listen: false)
+                            .getUserData()["interests"],
                       ),
                     ],
                   ),
@@ -171,27 +176,24 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
             isScrollControlled: true,
             builder: (context) => SingleChildScrollView(
               child: EditProfileScreen(
-                major: Provider.of<UserData>(context, listen: false)
-                    .data["Education"]["major"],
-                university: Provider.of<UserData>(context, listen: false)
-                    .data["Education"]["university"],
-                birthdate: Provider.of<UserData>(context, listen: false)
-                    .data["birthdate"],
-                location: Provider.of<UserData>(context, listen: false)
-                    .data["location"],
+                major: Provider.of<Database>(context, listen: false)
+                    .userData["Education"]["major"],
+                university: Provider.of<Database>(context, listen: false)
+                    .userData["Education"]["university"],
+                birthdate: Provider.of<Database>(context, listen: false)
+                    .userData["birthdate"],
+                location: Provider.of<Database>(context, listen: false)
+                    .userData["location"],
                 getValues: () async {
                   //to be refactored
                   showSpinner = true;
-                  String userID = loggedInUser.uid;
-                  Provider.of<UserData>(context, listen: false).addInterest();
+                  Provider.of<Database>(context, listen: false).addInterest();
                   try {
-                    await firestore.collection('users').doc(userID).update(
-                        Provider.of<UserData>(context, listen: false)
-                            .getData());
+                    await Provider.of<Database>(context, listen: false)
+                        .updateUserFirebaseData();
                   } catch (err) {}
 
-                  await getUserData();
-                  showSpinner = false;
+                  updateData();
                 },
               ),
             ),

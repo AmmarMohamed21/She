@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:she/constants.dart';
 import 'package:provider/provider.dart';
-import '../services/user_data.dart';
+import '../services/database.dart';
 
 class InterestsList extends StatelessWidget {
   final String title;
@@ -41,7 +41,7 @@ class InterestsList extends StatelessWidget {
                     size: 20.0,
                   ),
                   onTap: () {
-                    Provider.of<UserData>(context, listen: false)
+                    Provider.of<Database>(context, listen: false)
                         .deleteInterest(value);
                   },
                 ),

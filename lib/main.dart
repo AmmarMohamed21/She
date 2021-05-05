@@ -1,6 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:she/screens/blog_screen.dart';
-import 'package:she/screens/report_screen.dart';
+import 'package:she/screens/report_form_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/profile_screen.dart';
@@ -13,9 +13,11 @@ import 'servicesscreens/talent_exchange_screen.dart';
 import 'servicesscreens/travel_programs_screen.dart';
 import 'servicesscreens/women_safety_screen.dart';
 import 'package:provider/provider.dart';
-import 'services/user_data.dart';
+import 'services/database.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => UserData(),
+      create: (context) => Database(),
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'RocknRollOne'),
         initialRoute: LoginScreen.id,
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
           TalentExchangeScreen.id: (context) => TalentExchangeScreen(),
           TravelProgramsScreen.id: (context) => TravelProgramsScreen(),
           WomenSafetyScreen.id: (context) => WomenSafetyScreen(),
-          ReportScreen.id: (context) => ReportScreen(),
+          ReportFormScreen.id: (context) => ReportFormScreen(),
         },
       ),
     );
