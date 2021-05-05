@@ -7,19 +7,11 @@ you can also see some features like Jobs, Internships and Inspiring Stories with
 Also a new Women Safety section has been added where you can read awareness blogs, and report harassment incidents to the authorities.
 
 ## Try the demo version on Android
-Try the pre-release version by downloading the APK app installer for android through this link
+Try the pre-release version by downloading the APK app installer for android through this link:
 
 ```
 https://github.com/AmmarMohamed21/She/releases/tag/v2.0-beta
 ```
-
-## Use it on Android emulator
-To use this app on your Android you can download the APK file from the release (v1.0-beta) here: 
-
-```
-https://github.com/AmmarMohamed21/She/releases/tag/v1.0-beta
-```
-
 
 ## Using the app on an emulator through Android Studio
 
