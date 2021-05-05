@@ -3,6 +3,7 @@ import 'package:she/constants.dart';
 import '../screens/profile_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/home_screen.dart';
+import '../services/authentication.dart';
 
 AppBar getAppBar({String title, BuildContext context}) {
   return AppBar(
@@ -14,7 +15,7 @@ AppBar getAppBar({String title, BuildContext context}) {
         child: GestureDetector(
           onTap: () {
             if (ModalRoute.of(context).settings.name != HomeScreen.id)
-              Navigator.pushNamed(context, HomeScreen.id);
+              Navigator.popUntil(context, ModalRoute.withName(HomeScreen.id));
           },
           child: Container(
             child: Image.asset('assets/icon/icon.png'),
@@ -36,7 +37,11 @@ AppBar getAppBar({String title, BuildContext context}) {
           ),
         ],
         onSelected: (route) {
-          Navigator.pushNamed(context, route);
+          if (route == LoginScreen.id) {
+            Authentication.signOut(context: context);
+          } else {
+            Navigator.pushNamed(context, route);
+          }
         },
       )
     ],

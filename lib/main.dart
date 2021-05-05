@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:she/screens/report_form_screen.dart';
+import 'package:she/services/switch_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/profile_screen.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'RocknRollOne'),
         initialRoute: LoginScreen.id,
         routes: {
+          SwitchScreen.id: (context) => SwitchScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           HomeScreen.id: (context) => HomeScreen(),
           Profile.id: (context) => Profile(),

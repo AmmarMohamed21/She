@@ -90,4 +90,10 @@ class Database extends ChangeNotifier {
       'userID': loggedInUser.uid
     });
   }
+
+  bool isUserSignedIn() {
+    if (_auth.currentUser == null) return false;
+    setLoggedInUser();
+    return true;
+  }
 }

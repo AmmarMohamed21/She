@@ -8,6 +8,7 @@ import '../services/authentication.dart';
 import '../components/loading_circle.dart';
 import 'package:provider/provider.dart';
 import '../services/database.dart';
+import 'package:flutter/scheduler.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -24,6 +25,12 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void initState() {
+    if (Provider.of<Database>(context, listen: false).isUserSignedIn()) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        //might change this later
+        Navigator.of(context).popAndPushNamed(HomeScreen.id);
+      });
+    }
     super.initState();
     controller = AnimationController(
       vsync: this,
@@ -94,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen>
                     if (user != null) {
                       Provider.of<Database>(context, listen: false)
                           .setLoggedInUser();
-                      Navigator.pushNamed(context, HomeScreen.id);
+                      Navigator.popAndPushNamed(context, HomeScreen.id);
                     }
                     setState(() {
                       showSpinner = false;

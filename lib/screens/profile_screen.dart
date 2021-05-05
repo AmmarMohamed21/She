@@ -35,31 +35,6 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   List<dynamic> userInterests = [];
   Map userEducation = {'major': '', 'university': ''};
 
-  // Future<void> getUserData() async {
-  //   String userID = loggedInUser.uid;
-  //   var data;
-  //   var document = await firestore.collection('users').doc(userID).get();
-  //   if (document.data() == null) {
-  //     data = {
-  //       "location": '',
-  //       "birthdate": '',
-  //       "Education": {
-  //         "major": '',
-  //         "university": '',
-  //       },
-  //       "interests": [],
-  //     };
-  //     firestore.collection('users').doc(userID).set(data);
-  //     document = await firestore.collection('users').doc(userID).get();
-  //   }
-  //   Provider.of<Database>(context, listen: false).updateUserData(
-  //       document.data()['location'],
-  //       document.data()['birthdate'],
-  //       document.data()['Education'],
-  //       document.data()['interests']);
-  //
-  //   showSpinner = false;
-  // }
   Future<void> updateData() async {
     await Provider.of<Database>(context, listen: false).getUserFirebaseData();
     showSpinner = false;

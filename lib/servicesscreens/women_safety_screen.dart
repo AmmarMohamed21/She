@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:she/constants.dart';
 import '../components/main_app_bar.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 //import 'package:video_player/video_player.dart';
 
