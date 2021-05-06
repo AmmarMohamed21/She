@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: ServiceCard(
                     title: 'Women Safety',
-                    icon: FontAwesomeIcons.handsHelping,
+                    icon: FontAwesomeIcons.shieldAlt,
                     tapDetector: () {
                       Navigator.pushNamed(context, WomenSafetyScreen.id);
                     },
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: ServiceCard(
                     title: 'Internships',
-                    icon: FlutterIcons.graduation_cap_ent,
+                    icon: Icons.school,
                     tapDetector: () {
                       Navigator.pushNamed(context, InternshipsScreen.id);
                     },
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: ServiceCard(
                     title: 'Travel Programs',
-                    icon: FlutterIcons.md_airplane_ion,
+                    icon: Icons.flight,
                     tapDetector: () {
                       Navigator.pushNamed(context, TravelProgramsScreen.id);
                     },
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: ServiceCard(
                     title: 'Talent Exchange',
-                    icon: FontAwesomeIcons.solidHandshake,
+                    icon: Icons.autorenew_outlined,
                     tapDetector: () {
                       Navigator.pushNamed(context, TalentExchangeScreen.id);
                     },
