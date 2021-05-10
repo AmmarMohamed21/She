@@ -10,7 +10,7 @@ Also a new Women Safety section has been added where you can read awareness blog
 Try the pre-release version by downloading the APK app installer for android through this link:
 
 ```
-https://github.com/AmmarMohamed21/She/releases/tag/v2.0-beta
+https://github.com/AmmarMohamed21/She/releases/tag/v3.0-beta
 ```
 
 ## Using the app on an emulator through Android Studio
