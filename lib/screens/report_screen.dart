@@ -44,16 +44,16 @@ class ReportScreen extends StatelessWidget {
                         children: [
                           IconTextButton(
                             icon: Icons.call,
-                            label: '01116185647',
+                            label: '000000000000',
                             onPressed: () {
-                              launch("tel://01116185647");
+                              launch("tel://000000000000");
                             },
                           ),
                           IconTextButton(
                             icon: Icons.call,
-                            label: '19777',
+                            label: '000000',
                             onPressed: () {
-                              launch("tel://19777");
+                              launch("tel://000000");
                             },
                           ),
                         ],

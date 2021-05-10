@@ -1,13 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:she/constants.dart';
 import 'package:she/screens/report_form_screen.dart';
+import 'package:she/screens/video_screen.dart';
 import 'package:she/services/switch_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/profile_screen.dart';
 import 'servicesscreens/jobs_screen.dart';
 import 'servicesscreens/courses_screen.dart';
-import 'servicesscreens/inspiring_stories.dart';
+import 'servicesscreens/inspiring_stores_screen.dart';
 import 'servicesscreens/internships_screen.dart';
 import 'servicesscreens/motherhood_screen.dart';
 import 'servicesscreens/talent_exchange_screen.dart';
@@ -28,10 +30,16 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => Database(),
       child: MaterialApp(
-        theme: ThemeData(fontFamily: 'RocknRollOne'),
+        theme: ThemeData(
+          fontFamily: 'RocknRollOne',
+          accentColor: kPrimaryColor,
+          backgroundColor: kLightPrimaryColor,
+          iconTheme: IconThemeData(color: kPrimaryColor),
+        ),
         initialRoute: LoginScreen.id,
         routes: {
           SwitchScreen.id: (context) => SwitchScreen(),
+          VideoScreen.id: (context) => VideoScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           HomeScreen.id: (context) => HomeScreen(),
           Profile.id: (context) => Profile(),

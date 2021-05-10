@@ -6,7 +6,7 @@ import '../components/service_card.dart';
 import '../components/main_app_bar.dart';
 import '../servicesscreens/jobs_screen.dart';
 import '../servicesscreens/courses_screen.dart';
-import '../servicesscreens/inspiring_stories.dart';
+import '../servicesscreens/inspiring_stores_screen.dart';
 import '../servicesscreens/internships_screen.dart';
 import '../servicesscreens/motherhood_screen.dart';
 import '../servicesscreens/talent_exchange_screen.dart';

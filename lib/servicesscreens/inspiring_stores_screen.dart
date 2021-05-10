@@ -22,8 +22,8 @@ class InspiringStoriesScreen extends StatelessWidget {
 class StoriesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: Provider.of<Database>(context, listen: false)
+    return FutureBuilder<QuerySnapshot>(
+      future: Provider.of<Database>(context, listen: false)
           .getStream('inspiringStories'),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {

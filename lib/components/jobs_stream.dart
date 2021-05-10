@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'loading_circle.dart';
-import 'jobs_card.dart';
+import 'job_card.dart';
 import 'package:provider/provider.dart';
 import '../services/database.dart';
 
@@ -10,8 +10,8 @@ class JobsStream extends StatelessWidget {
   JobsStream({this.collectionName});
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: Provider.of<Database>(context, listen: false)
+    return FutureBuilder<QuerySnapshot>(
+      future: Provider.of<Database>(context, listen: false)
           .getStream(collectionName),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {

@@ -38,6 +38,9 @@ dependencies:
   video_player: ^2.1.1
   url_launcher: ^6.0.3
   provider: ^5.0.0
+  chewie: ^1.0.0
+  multi_image_picker: ^4.8.00
+  firebase_storage: ^8.0.5
 
 dev_dependencies:
   flutter_test:

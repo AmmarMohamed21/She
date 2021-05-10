@@ -3,6 +3,8 @@ import 'package:expandable/expandable.dart';
 import 'package:she/constants.dart';
 import 'package:she/screens/blog_screen.dart';
 
+import 'image_container.dart';
+
 class BlogCard extends StatelessWidget {
   final String title;
   final String body;
@@ -30,9 +32,7 @@ class BlogCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Image(
-                image: NetworkImage(imageURL),
-              ),
+              ImageContainer(imageURL: imageURL),
               SizedBox(
                 height: 8.0,
               ),

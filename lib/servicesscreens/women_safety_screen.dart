@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:she/components/IconTextTab.dart';
 import 'package:she/components/blogs_stream.dart';
+import 'package:she/components/image_container.dart';
+import 'package:she/components/videos_stream.dart';
 import 'package:she/screens/report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:she/constants.dart';
 import '../components/main_app_bar.dart';
-
-//import 'package:video_player/video_player.dart';
 
 class WomenSafetyScreen extends StatelessWidget {
   static const String id = 'women_safety_screen';
@@ -39,7 +39,7 @@ class WomenSafetyScreen extends StatelessWidget {
           body: TabBarView(
             children: [
               BlogsStream(),
-              Text('2'),
+              VideosStream(),
               ReportScreen(),
             ],
           ),

@@ -8,8 +8,8 @@ import 'blog_card.dart';
 class BlogsStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: Provider.of<Database>(context, listen: false).getStream('blogs'),
+    return FutureBuilder<QuerySnapshot>(
+      future: Provider.of<Database>(context, listen: false).getStream('blogs'),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(

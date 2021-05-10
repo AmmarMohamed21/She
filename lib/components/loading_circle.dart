@@ -29,6 +29,13 @@ class _LoadingCircleState extends State<LoadingCircle>
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+    // animationController.dispose() instead of your controller.dispose
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
       valueColor: animatedColor,
