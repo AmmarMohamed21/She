@@ -20,6 +20,7 @@ class BlogScreen extends StatelessWidget {
           children: [
             Text(
               title,
+              textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 35.0,
                 fontWeight: FontWeight.w900,
