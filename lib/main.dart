@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => Database(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'RocknRollOne',
           accentColor: kPrimaryColor,
